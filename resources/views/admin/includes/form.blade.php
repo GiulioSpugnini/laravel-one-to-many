@@ -26,6 +26,7 @@
             </div>
         @enderror
     </div>
+
     <div class="col-6">
         <label for="category" class="form-label">Categoria</label>
         <select class="form-control @error('category_id') is-invalid @enderror" id="category" name="category_id"
@@ -36,16 +37,19 @@
                     {{ $category->label }}</option>
             @endforeach
         </select>
+
         @error('category_id')
             <div class="invalid-feedback">
                 {{ $message }}
             </div>
         @enderror
     </div>
+
     <div class="col-6">
         <label for="image" class="form-label">Url dell'immagine</label>
         <input type="url" class="form-control" id="image" name="image" value="{{ old('image', $post->image) }}">
     </div>
+
     <div class="col-12 text-center">
         <div class="mb-3">
             <label for="content" class="form-label">Contenuto</label>
@@ -53,6 +57,7 @@
         </div>
     </div>
 </div>
+
 <div class="d-flex justify-content-end align-items-center">
     <a class="btn btn-secondary mr-2" href="{{ route('admin.posts.index') }}" type="button" class="btn btn-success">
         Indietro

@@ -45,15 +45,19 @@ class PostController extends Controller
     {
         $request->validate(
             [
-                'title' => ['required', 'string', 'unique:posts'],
+                'title' => 'required|string|unique:posts',
                 'content' => ['required', 'string'],
                 'image' => ['required', 'string'],
-                'category_id' => ['nullable', 'exists:categories,id']
+                'category_id' => 'nullable|exists:categories,id'
+            ],
+            [
+                'title' => 'Il titolo è obbligatorio',
+                'title' => "Esiste già un post dal titolo $request->title",
             ]
         );
         $data = $request->all();
 
-        $data['slug'] = Str::slug($request->title);
+        $data['slug'] = Str::slug($request->title, '-');
         $post = new Post();
         $post->fill($data);
         $post->save();
@@ -69,6 +73,7 @@ class PostController extends Controller
      */
     public function show(Post $post)
     {
+
         return view('admin.posts.show', compact('post', $post->id));
     }
 
@@ -99,6 +104,10 @@ class PostController extends Controller
                 'content' => ['required', 'string'],
                 'image' => ['required', 'string'],
                 'category_id' => ['nullable', 'exists:categories,id']
+            ],
+            [
+                'title' => 'Il titolo è obbligatorio',
+                'title' => "Esiste già un post dal titolo $request->title",
             ]
         );
         $data = $request->all();
