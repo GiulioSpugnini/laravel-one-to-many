@@ -37,7 +37,14 @@ class CategoryController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $request->validate([]);
+        $data = $request->all();
+        $category = new Category();
+
+        $category->fill($data);
+        $request->save();
+
+        return redirect()->route('admin.categories.show', $category->id);
     }
 
     /**
