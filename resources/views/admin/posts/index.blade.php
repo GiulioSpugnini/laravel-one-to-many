@@ -19,6 +19,7 @@
                         <th scope="col">#</th>
                         <th scope="col">Titolo:</th>
                         <th scope="col">Slug:</th>
+                        <th scope="col">Categorie:</th>
                         <th scope="col">Data di crezione:</th>
                         <th scope="col">Azione</th>
                         </th>
@@ -30,6 +31,7 @@
                             <th scope="row">{{ $post->id }}</th>
                             <td>{{ $post->title }}</td>
                             <td>{{ $post->slug }}</td>
+                            <td>{{ $post->category->label }}</td>
                             <td>{{ $post->created_at }}</td>
                             <th class="d-flex justify-content-end align-items-center">
                                 <a class="btn btn-sm btn-primary mr-2" href="{{ route('admin.posts.show', $post->id) }}"><i

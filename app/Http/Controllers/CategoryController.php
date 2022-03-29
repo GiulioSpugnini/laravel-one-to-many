@@ -12,9 +12,10 @@ class CategoryController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Category $category)
     {
-        //
+        $category = new Category();
+        return view('admin.categories.index', compact('category'));
     }
 
     /**
