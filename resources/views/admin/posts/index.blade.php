@@ -31,13 +31,20 @@
                             <th scope="row">{{ $post->id }}</th>
                             <td>{{ $post->title }}</td>
                             <td>{{ $post->slug }}</td>
-                            <td>{{ $post->category->label }}</td>
+                            <td>
+                                @if ($post->category)
+                                    <span
+                                        class="badge badge-pill badge-{{ $post->category->color }}">{{ $post->category->label }}</span>
+                                @else
+                                    -
+                                @endif
+                            </td>
                             <td>{{ $post->created_at }}</td>
                             <th class="d-flex justify-content-end align-items-center">
                                 <a class="btn btn-sm btn-primary mr-2" href="{{ route('admin.posts.show', $post->id) }}"><i
                                         class="fas fa-eye"></i></a>
-                                <a class="btn btn-sm btn-warning mr-2" href="{{ route('admin.posts.edit', $post->id) }}"><i
-                                        class="fas fa-pencil"></i></a>
+                                <a class="btn btn-sm btn-warning mr-2"
+                                    href="{{ route('admin.posts.edit', $post->id) }}"><i class="fas fa-pencil"></i></a>
                                 <form action="{{ route('admin.posts.destroy', $post->id) }}" method="POST"
                                     class="delete-form">
                                     @csrf
@@ -58,6 +65,11 @@
             </table>
         </div>
     </div>
+    @if ($posts->hasPages())
+        <div class="d-flex justify-content-end align-items-center">
+            {{ $posts->links() }}
+        </div>
+    @endif
 @endsection
 
 @section('additional-script')
