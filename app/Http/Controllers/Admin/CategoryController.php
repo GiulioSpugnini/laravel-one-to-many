@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Category;
+use Illuminate\Validation\Rule;
 use Illuminate\Http\Request;
 
 class CategoryController extends Controller
@@ -81,7 +82,16 @@ class CategoryController extends Controller
      */
     public function update(Request $request, Category $category)
     {
-        //
+        $request->validate([
+            'label' => ['reuquired', 'string', Rule::unique('categories')->ignore($category->id)],
+            'color' => 'required|string'
+        ]);
+        $data = $request->all();
+        $category = new Category();
+
+        $category->update($data);
+        $request->save();
+        return redirect()->route('admin.categories.show', $category->id);
     }
 
     /**
