@@ -70,6 +70,17 @@
             {{ $posts->links() }}
         </div>
     @endif
+
+    <div class="row">
+        @foreach ($categories as $category)
+            <div class="col-3 mb-2">
+                <h3>{{ $category->label }}</h3>
+                @foreach ($category->posts as $post)
+                    <h5><a href="{{ route('admin.posts.show', $post->id) }}">{{ $post->title }}</a></h5>
+                @endforeach
+            </div>
+        @endforeach
+    </div>
 @endsection
 
 @section('additional-script')
