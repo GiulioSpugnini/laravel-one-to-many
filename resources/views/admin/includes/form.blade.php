@@ -18,7 +18,29 @@
 <div class="row gy-2">
     <div class="col-6">
         <label for="title" class="form-label">Titolo</label>
-        <input type="text" class="form-control" id="title" name="title" value="{{ old('title', $post->title) }}">
+        <input type="text" class="form-control @error('title') is-invalid @enderror" id="title" name="title"
+            value="{{ old('title', $post->title) }}">
+        @error('title')
+            <div class="invalid-feedback">
+                {{ $message }}
+            </div>
+        @enderror
+    </div>
+    <div class="col-6">
+        <label for="category" class="form-label">Categoria</label>
+        <select class="form-control @error('category_id') is-invalid @enderror" id="category" name="category_id"
+            value="{{ old('category', $post->category) }}">
+            <option value="">Nessuna Categoria</option>
+            @foreach ($categories as $category)
+                <option @if (old('category_id', $post->category_id) == $category->id) selected @endif value="{{ $category->id }}">
+                    {{ $category->label }}</option>
+            @endforeach
+        </select>
+        @error('category_id')
+            <div class="invalid-feedback">
+                {{ $message }}
+            </div>
+        @enderror
     </div>
     <div class="col-6">
         <label for="image" class="form-label">Url dell'immagine</label>

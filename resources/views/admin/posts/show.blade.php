@@ -8,7 +8,14 @@
                 </div>
                 <div class="col-md-8">
                     <div class="card-body">
-                        <h5 class="card-title">{{ $post->title }}</h5>
+                        <div class="d-flex align-items-baseline">
+                            <h5 class="card-title">{{ $post->title }}</h5>
+                            @if ($post->category)
+                                <span
+                                    class="ml-2 badge badge-pill badge-{{ $post->category->color }}">{{ $post->category->label }}</span>
+                            @endif
+                        </div>
+
                         <p class="card-text">{{ $post->content }}</p>
                     </div>
                 </div>
