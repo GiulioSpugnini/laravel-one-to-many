@@ -13,7 +13,7 @@
                 post</a>
         </header>
         <div>
-            <table class="table">
+            <table class="table table-success">
                 <thead>
                     <tr>
                         <th scope="col">#</th>
