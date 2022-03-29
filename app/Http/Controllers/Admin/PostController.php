@@ -83,7 +83,7 @@ class PostController extends Controller
     {
         $request->validate(
             [
-                'title' => ['required', 'string', Rule::unique('posts')->ignore($post->title)],
+                'title' => ['required', 'string', Rule::unique('posts')->ignore($post->id)],
                 'content' => ['required', 'string'],
                 'image' => ['required', 'string'],
             ]
