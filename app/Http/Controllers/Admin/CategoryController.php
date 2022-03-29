@@ -40,14 +40,14 @@ class CategoryController extends Controller
     public function store(Request $request)
     {
         $request->validate([
-            'label' => 'reuquired|string|unique:categories',
+            'label' => 'required|string|unique:categories',
             'color' => 'required|string'
         ]);
         $data = $request->all();
         $category = new Category();
 
         $category->fill($data);
-        $request->save();
+        $category->save();
 
         return redirect()->route('admin.categories.show', $category->id);
     }
@@ -84,14 +84,13 @@ class CategoryController extends Controller
     public function update(Request $request, Category $category)
     {
         $request->validate([
-            'label' => ['reuquired', 'string', Rule::unique('categories')->ignore($category->id)],
+            'label' => ['required', 'string', Rule::unique('categories')->ignore($category->id)],
             'color' => 'required|string'
         ]);
         $data = $request->all();
         $category = new Category();
 
         $category->update($data);
-        $request->save();
         return redirect()->route('admin.categories.show', $category->id);
     }
 
