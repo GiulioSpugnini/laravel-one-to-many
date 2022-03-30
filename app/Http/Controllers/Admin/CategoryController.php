@@ -60,7 +60,8 @@ class CategoryController extends Controller
      */
     public function show(Category $category)
     {
-        return view('admin.categories.show', compact('category'));
+
+        return view('admin.categories.show', compact('category', $category->id));
     }
 
     /**
@@ -88,8 +89,6 @@ class CategoryController extends Controller
             'color' => 'required|string'
         ]);
         $data = $request->all();
-        $category = new Category();
-
         $category->update($data);
         return redirect()->route('admin.categories.show', $category->id);
     }

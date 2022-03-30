@@ -30,12 +30,12 @@
     <div class="col-6">
         <label for="color" class="form-label">Colore</label>
         <select class="form-control @error('color') is-invalid @enderror" id="color" name="color">
-            <option value="success @if (old('color', $category->color)) ==='success' @endif">Verde</option>
-            <option value="light @if (old('color', $category->color)) ==='light' @endif">Bianco</option>
-            <option value="info @if (old('color', $category->color)) ==='info' @endif">Celeste</option>
-            <option value="primary @if (old('color', $category->color)) ==='primary' @endif">Azzurro</option>
-            <option value="danger @if (old('color', $category->color)) ==='danger' @endif">Rosso</option>
-            <option value="warning @if (old('color', $category->color)) ==='warning' @endif">Giallo</option>
+            <option value="success" @if (old('color', $category->color) === 'success') selected @endif>Verde</option>
+            <option value="light" @if (old('color', $category->color) === 'light') selected @endif>Bianco</option>
+            <option value="info" @if (old('color', $category->color) === 'info') selected @endif>Celeste</option>
+            <option value="primary" @if (old('color', $category->color) === 'primary') selected @endif>Azzurro</option>
+            <option value="danger" @if (old('color', $category->color) === 'danger') selected @endif>Rosso</option>
+            <option value="warning" @if (old('color', $category->color) === 'warning') selected @endif>Giallo</option>
         </select>
         @error('color')
             <div class="invalid-feedback">
